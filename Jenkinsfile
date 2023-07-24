@@ -22,8 +22,8 @@ pipeline {
                 script {
                     final String url = "https://preview.octomind.dev/api/v2/execute"
                     final String header = "Content-Type: application/json"
-                    final String repo_name = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
-                    echo env.GIT_URL
+                    final String repo_name = env.GIT_URL.replaceFirst(^.*?(?::\/\/.*?\/|:)(.*).git$)
+                    // final String repo_name = env.GIT_URL.replaceFirst(^.*?(?::\/\/.*?\/|:)(.*).git$, '$1')
                     final String data = """{
                     "url": "https://preview.octomind.dev/testresults/c09d0c97-20f6-452a-aadd-086f627716f8", 
                     "token": "d791a2d0603f7863951575ca05e1ffcfddaaf17f4d2b5d0998212ea093ae78d13b836d8ece1172719ed73199d89a5ba2",
