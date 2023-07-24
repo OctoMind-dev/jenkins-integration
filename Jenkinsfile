@@ -28,8 +28,8 @@ pipeline {
                             }
                     }'''
 
-                    final def (String response, int status_code) = sh(script: "curl -s -w '\\n%{response_code}' $url --header '$header' --data '$data'", returnStdout: true)
-                    if (status_code == 202) {
+                    final def (String response, int status_code) = sh(script: "curl -s -w '\\n%{response_code}' $url --header '$header' --data '$data'", returnStdout: true).trim().tokenize("\n")
+                    if (code == 202) {
                         def matches = response =~/"id":"(.+?)"/
                         final String testReportId = matches[0][1]
                         final String testReportUrl = "${baseUrl}/testreports/${testReportId}"
