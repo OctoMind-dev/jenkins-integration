@@ -45,7 +45,7 @@ pipeline {
 
                     final String response = sh(script: "curl $url --header '$header' --data '$data'", returnStdout: true)
 
-                    def matches = response =~/"id":"(.+?)"/i
+                    def matches = response =~/"id":"(.+?)"/
 
                     echo matches[0][1]
                         
