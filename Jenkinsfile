@@ -9,8 +9,7 @@ pipeline {
         stage("Execute Automagically") {
             steps {
                 script {
-                    // final String baseUrl = "https://preview.octomind.dev"
-                    final String baseUrl = "https://shy-seas-sit.loca.lt"
+                    final String baseUrl = "https://preview.octomind.dev"
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
                     // def matches = ("git@github.com:OctoMind-dev/jenkins-test.git" =~ /((git@|https:\/\/)([\w\.@]+)(\/|:))([\w,\-,\_]+)\/([\w,\-,\_]+)(.git){0,1}((\/){0,1})/)
@@ -38,8 +37,8 @@ pipeline {
                         currentBuild.description = """<a href="${testReportUrl}">Link to Test Report</a>"""
                         echo "You can view your Test Report here: ${testReportUrl}"
                     } else {
-                        currentBuild.description = echo "got status ${status_code}"
-                        echo "got status ${status_code}"
+                        currentBuild.description = "Execution unsuccessful. Got status ${status_code}"
+                        echo "Execution unsuccessful. Got status ${status_code}"
                     }
                 }
             }
