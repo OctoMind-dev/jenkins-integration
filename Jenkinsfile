@@ -34,7 +34,7 @@ pipeline {
                     def matches = response =~/"id":"(.+?)"/
                     final String testReportId = matches[0][1]
 
-                    echo "${baseUrl}/testreports/${testReportId}"
+                    currentBuild.description = "${baseUrl}/testreports/${testReportId}"
                         
                     // }
 
