@@ -21,8 +21,8 @@ pipeline {
                             "source": "github",
                             "repo": "automagically",
                             "owner": "OctoMind-dev",
-                            "sha": '$env.GIT_COMMIT",
-                            "ref": '$env.GIT_BRANCH"
+                            "sha": "$env.GIT_COMMIT",
+                            "ref": "$env.GIT_BRANCH"
                             }
                     }'''
 
