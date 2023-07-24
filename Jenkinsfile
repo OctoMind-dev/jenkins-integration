@@ -12,10 +12,7 @@ pipeline {
                     final String baseUrl = "https://preview.octomind.dev"
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
-                    // def matches = ("git@github.com:OctoMind-dev/jenkins-test.git" =~ /((git@|https:\/\/)([\w\.@]+)(\/|:))([\w,\-,\_]+)\/([\w,\-,\_]+)(.git){0,1}((\/){0,1})/)
-                    def more_matches = "git@github.com:OctoMind-dev/jenkins-test.git" =~/((git@|https://)([\w\.@]+)(/|:))([\w,\-,\_]+)\/([\w,\-,\_]+)(.git){0,1}((/){0,1})/
-                    final String owner = "test" // matches[0][4]
-                    final String repo = "test" //matches[0][5]
+    
                     final String data = """{
                         "url": "https://preview.octomind.dev/testresults/c09d0c97-20f6-452a-aadd-086f627716f8", 
                         "token": "${AUTOMAGICALLY_TOKEN}",
