@@ -28,7 +28,7 @@ pipeline {
                             }
                     }'''
 
-                    final def (String response, int status_code) = sh(script: "curl -s -w '\\n%{response_code}' $url --header '$header' --data '$data'", returnStdout: true).trim().tokenize("\n")
+                    final def (String response, int code) = sh(script: "curl -s -w '\\n%{response_code}' $url --header '$header' --data '$data'", returnStdout: true).trim().tokenize("\n")
                     if (code == 202) {
                         def matches = response =~/"id":"(.+?)"/
                         final String testReportId = matches[0][1]
@@ -37,8 +37,8 @@ pipeline {
                         currentBuild.description = """<a href="${testReportUrl}">Link to Test Report</a>"""
                         echo "You can view your Test Report here: ${testReportUrl}"
                     } else {
-                        currentBuild.description = "Execution unsuccessful. Got status ${status_code}"
-                        echo "Execution unsuccessful. Got status ${status_code}"
+                        currentBuild.description = "Execution unsuccessful. Got status ${code}"
+                        echo "Execution unsuccessful. Got status ${code}"
                     }
                 }
             }
