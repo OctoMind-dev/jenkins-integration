@@ -6,26 +6,12 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
-        stage("Using curl example") {
+        stage("Execute Automagically") {
             steps {
                 script {
                     // withCredentials([string(credentialsId: 'AUTOMAGICALLY_TOKEN', variable: 'AUTOMAGICALLY_TOKEN')]) {
-                    final String url = "https://preview.octomind.dev/api/v2/execute"
+                    final String baseUrl = "https://preview.octomind.dev"
+                    final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
                     // def matches = ("git@github.com:OctoMind-dev/jenkins-test.git" =~ /((git@|https:\/\/)([\w\.@]+)(\/|:))([\w,\-,\_]+)\/([\w,\-,\_]+)(.git){0,1}((\/){0,1})/)
                     final String owner = "test" // matches[0][4]
@@ -46,8 +32,9 @@ pipeline {
                     final String response = sh(script: "curl $url --header '$header' --data '$data'", returnStdout: true)
 
                     def matches = response =~/"id":"(.+?)"/
+                    final String testReportId = matches[0][1]
 
-                    echo matches[0][1]
+                    echo "${baseurl}/testreports/${testReportId}"
                         
                     // }
 
