@@ -35,7 +35,7 @@ pipeline {
                     final String testReportId = matches[0][1]
 
                     currentBuild.description = "You can view your [Test Report](${baseUrl}/testreports/${testReportId})"
-                    echo "You can view your [Test Report](${baseUrl}/testreports/${testReportId})"
+                    echo "You can view your Test Report here: ${baseUrl}/testreports/${testReportId}"
                         
                     // }
 
