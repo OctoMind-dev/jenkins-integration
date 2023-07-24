@@ -35,7 +35,7 @@ pipeline {
                     final String testReportId = matches[0][1]
                     final String testReportUrl = "${baseUrl}/testreports/${testReportId}"
 
-                    currentBuild.description = """<a href="${testReporturl}">Link to Test Report</a>"""
+                    currentBuild.description = """<a href="${testReportUrl}">Link to Test Report</a>"""
                     echo "You can view your Test Report here: ${testReportUrl}"                        
                     // }
                 }
