@@ -33,12 +33,11 @@ pipeline {
 
                     def matches = response =~/"id":"(.+?)"/
                     final String testReportId = matches[0][1]
+                    final String testReportUrl = "${baseUrl}/testreports/${testReportId}"
 
-                    currentBuild.description = "[Link to Test Report](${baseUrl}/testreports/${testReportId})"
-                    echo "You can view your Test Report here: ${baseUrl}/testreports/${testReportId}"
-                        
+                    currentBuild.description = """<a href="${testReporturl}">Link to Test Report</a>"""
+                    echo "You can view your Test Report here: ${testReportUrl}"                        
                     // }
-
                 }
             }
         }
