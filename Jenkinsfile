@@ -20,11 +20,9 @@ pipeline {
         stage("Using curl example") {
             steps {
                 script {
-                    import groovy.json.JsonSlurper 
-                    
                     final String url = "https://preview.octomind.dev/api/v2/execute"
                     final String header = "Content-Type: application/json"
-                    def jsonSlurper = new JsonSlurper()
+                    def jsonSlurper = new groovy.json.JsonSlurper()
                     def data = jsonSlurper.parseText('''
                     {
                     	"url": "https://preview.octomind.dev/testresults/c09d0c97-20f6-452a-aadd-086f627716f8",
