@@ -28,10 +28,10 @@ pipeline {
                     "testTargetId": "2eed7f27-dfef-4062-8594-1b8f49ca0d26",
                     "context": { 
                         "source": "github",
-                        "repo": "automagically",
+                        "repo": "${env.GIT_CHECKOUT_DIR}",
                         "owner": "OctoMind-dev",
-                        "sha": "someSha",
-                        "ref": "someRef"
+                        "sha": "${env.GIT_COMMIT}",
+                        "ref": "${env.GIT_BRANCH}"
                         }
                     }'''
 
