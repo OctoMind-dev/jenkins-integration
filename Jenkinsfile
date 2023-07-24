@@ -45,9 +45,9 @@ pipeline {
 
                     final String response = sh(script: "curl $url --header '$header' --data '$data'", returnStdout: true)
 
-                    def json = new groovy.json.JsonSlurperClassic().parseText(response)
+                    def matches = response =~/"id":"(.+?)"/i
 
-                    echo json.testReport.id
+                    echo matches[0][1]
                         
                     // }
 
