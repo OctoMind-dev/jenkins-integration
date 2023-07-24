@@ -18,7 +18,7 @@ pipeline {
                     final String repo = "test" //matches[0][5]
                     final String data = '''{
                         "url": "https://preview.octomind.dev/testresults/c09d0c97-20f6-452a-aadd-086f627716f8", 
-                        "token": "$AUTOMAGICALLY_TOKEN",
+                        "token": "\${AUTOMAGICALLY_TOKEN}",
                         "testTargetId": "2eed7f27-dfef-4062-8594-1b8f49ca0d26",
                         "context": { 
                             "source": "github",
@@ -29,15 +29,18 @@ pipeline {
                             }
                     }'''
 
-                    final String response = sh(script: "curl $url --header '$header' --data '$data'", returnStdout: true)
-
-                    def matches = response =~/"id":"(.+?)"/
-                    final String testReportId = matches[0][1]
-                    final String testReportUrl = "${baseUrl}/testreports/${testReportId}"
-
-                    currentBuild.description = """<a href="${testReportUrl}">Link to Test Report</a>"""
-                    echo "You can view your Test Report here: ${testReportUrl}"                        
-                    
+                    final def (String response, int status_code) = sh(script: "curl -s -w '\\n%{response_code}' $url --header '$header' --data '$data'", returnStdout: true)
+                    if (status_code == 202) {
+                        def matches = response =~/"id":"(.+?)"/
+                        final String testReportId = matches[0][1]
+                        final String testReportUrl = "${baseUrl}/testreports/${testReportId}"
+    
+                        currentBuild.description = """<a href="${testReportUrl}">Link to Test Report</a>"""
+                        echo "You can view your Test Report here: ${testReportUrl}"
+                    } else {
+                        currentBuild.description = echo "got status ${status_code}"
+                        echo "got status ${status_code}"
+                    }
                 }
             }
         }
