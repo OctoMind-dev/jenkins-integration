@@ -35,7 +35,7 @@ pipeline {
                         }
                     }"""
 
-                    final String response = sh(script: "curl -s $url --header $header --data $data", returnStdout: true).trim()
+                    final String response = sh(script: "curl -s $url --header $header --data $data", returnStdout: true)
 
                     echo response
                 }
