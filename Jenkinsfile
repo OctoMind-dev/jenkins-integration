@@ -23,7 +23,7 @@ pipeline {
                     final String url = "https://preview.octomind.dev/api/v2/execute"
                     final String header = "Content-Type: application/json"
                     def matches = ("git@github.com:OctoMind-dev/jenkins-test.git" =~ /((git@|https:\/\/)([\w\.@]+)(\/|:))([\w,\-,\_]+)\/([\w,\-,\_]+)(.git){0,1}((\/){0,1})/)
-                    echo matches
+                    echo matches.group()
                     final String owner = "test" // matches[0][4]
                     final String repo = "test" //matches[0][5]
                     final String data = """{
