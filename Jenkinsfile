@@ -11,6 +11,7 @@ pipeline {
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
                     String[] something = "${env.GIT_URL}"
+                    echo "${env.GIT_URL}"
                     int number_of_elements = something.size()
                     echo something[number_of_elements - 1]
                     echo something[number_of_elements - 2]
