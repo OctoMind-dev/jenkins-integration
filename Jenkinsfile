@@ -12,8 +12,8 @@ pipeline {
                     final String header = "Content-Type: application/json"
                     String[] split_url = "${env.GIT_URL}".split('/')
                     int number_of_elements = split_url.size()
-                    final String repo = split_url[number_of_elements - 2]
-                    final String owner = split_url[number_of_elements - 3]
+                    final String repo = split_url[number_of_elements - 1]
+                    final String owner = split_url[number_of_elements - 2]
                     
                     final String data = """{
                         "url": "https://preview.octomind.dev/testresults/c09d0c97-20f6-452a-aadd-086f627716f8", 
