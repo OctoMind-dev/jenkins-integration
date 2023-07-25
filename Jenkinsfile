@@ -44,12 +44,12 @@ pipeline {
                         echo "Execution unsuccessful. Got status ${code}"
                     }
                 }
-                @NonCPS
-                def version(text) {
-                  def matcher = text =~ '.*(/|:)(.*)/([^\\.]*)(\\.git)?$'
-                  matcher ? matcher : null
-                }
             }
+        }
+        @NonCPS
+        def version(text) {
+          def matcher = text =~ '.*(/|:)(.*)/([^\\.]*)(\\.git)?$'
+          matcher ? matcher : null
         }
     }
 }
