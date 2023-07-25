@@ -11,10 +11,10 @@ pipeline {
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
                     String[] something = "${env.GIT_URL}"
-                    echo "${env.GIT_URL}"
                     int number_of_elements = something.size()
-                    echo something[number_of_elements - 1]
+                    echo something
                     echo something[number_of_elements - 2]
+                    echo something[number_of_elements - 3]
                     
                     final String data = """{
                         "url": "https://preview.octomind.dev/testresults/c09d0c97-20f6-452a-aadd-086f627716f8", 
