@@ -12,7 +12,7 @@ pipeline {
                     final String baseUrl = "https://preview.octomind.dev"
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
-                    def owner_repo_matches = "https://github.com/OctoMind-dev/jenkins-integration" =~/.*(\/|:)(.*)\/([^\.]*)(\.git)?$/
+                    def owner_repo_matches = "https://github.com/OctoMind-dev/jenkins-integration" =~/.*(\/|:)(.*)\/([^\\.]*)(\\.git)?$/
                     echo owner_repo_matches
                     
     
