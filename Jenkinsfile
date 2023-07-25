@@ -3,8 +3,6 @@ pipeline {
     environment {
         AUTOMAGICALLY_TOKEN = credentials('AUTOMAGICALLY_TOKEN')
     }
-    
-
     stages {
         stage("Execute Automagically") {
             steps {
@@ -12,12 +10,6 @@ pipeline {
                     final String baseUrl = "https://preview.octomind.dev"
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
-                    def owner_repo_matches = version("https://github.com/OctoMind-dev/jenkins-integration")
-                    echo owner_repo_matches
-
-                    
-                    
-    
                     final String data = """{
                         "url": "https://preview.octomind.dev/testresults/c09d0c97-20f6-452a-aadd-086f627716f8", 
                         "token": "${AUTOMAGICALLY_TOKEN}",
@@ -30,7 +22,6 @@ pipeline {
                             "ref": "${env.GIT_BRANCH}"
                             }
                     }"""
-
                     final def (String response, String code) = sh(script: "curl -s -w '\\n%{response_code}' $url --header '$header' --data '$data'", returnStdout: true).trim().tokenize("\n")
                     if (code == '202') {
                         def matches = response =~/"id":"(.+?)"/
@@ -47,9 +38,4 @@ pipeline {
             }
         }
     }
-}
-@NonCPS
-def version(text) {
-  def matcher = text =~ '.*(/|:)(.*)/([^\\.]*)(\\.git)?$'
-  matcher ? matcher : null
 }
