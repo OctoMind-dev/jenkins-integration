@@ -39,3 +39,7 @@ Lastly, click on save
 (image goes here)
 5. You should add you `AUTOMAGICALLY_TOKEN` to your secrets. Navigate to `Dashboard -> Manage jenkins -> Credentials -> System -> Global credentials (unrestricted)` and click on `Add Credentials`.
 For the `Kind` you need to select `Secret text`. Be careful that your `ID` matches the `ID` that you call within the Jenkinsfile script. Put your Token value to Secret field and click `Create`.
+(image goes here)
+
+If you want, you can enable safe parsing of HTML so you can click the link to test report automagically provided for you.
+Navigate to `Dashboard -> Manage jenkins -> Security` and for `Markup Formatter` select `Safe HTML`
