@@ -12,6 +12,9 @@ pipeline {
                     final String baseUrl = "https://preview.octomind.dev"
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
+                    def owner_repo_matches = "https://github.com/OctoMind-dev/jenkins-integration" =~/.*(/|:)(.*)/([^\.]*)(\.git)?$/
+                    echo owner_repo_matches
+                    
     
                     final String data = """{
                         "url": "https://preview.octomind.dev/testresults/c09d0c97-20f6-452a-aadd-086f627716f8", 
