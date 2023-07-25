@@ -10,10 +10,10 @@ pipeline {
                     final String baseUrl = "https://preview.octomind.dev"
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
-                    String[] something = "${env.GIT_URL}".split('/')
-                    int number_of_elements = something.size()
-                    echo something[number_of_elements - 2]
-                    echo something[number_of_elements - 3]
+                    String[] split_url = "${env.GIT_URL}".split('/')
+                    int number_of_elements = split_url.size()
+                    final String repo = split_url[number_of_elements - 2]
+                    final String owner = split_url[number_of_elements - 3]
                     
                     final String data = """{
                         "url": "https://preview.octomind.dev/testresults/c09d0c97-20f6-452a-aadd-086f627716f8", 
@@ -21,8 +21,8 @@ pipeline {
                         "testTargetId": "2eed7f27-dfef-4062-8594-1b8f49ca0d26",
                         "context": { 
                             "source": "github",
-                            "repo": "automagically",
-                            "owner": "OctoMind-dev",
+                            "repo": "$repo",
+                            "owner": "$owner",
                             "sha": "${env.GIT_COMMIT}",
                             "ref": "${env.GIT_BRANCH}"
                             }
