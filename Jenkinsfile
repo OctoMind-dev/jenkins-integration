@@ -10,7 +10,7 @@ pipeline {
                     final String baseUrl = "https://preview.octomind.dev"
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
-                    def matches2 = "https://github.com/OctoMind-dev/jenkins-integration" =~/.*\/(.*)\/(.*)/
+                    def matches2 = "https://github.com/OctoMind-dev/jenkins-integration" =~/\.*\/(\.*)\/(\.*)/
                     echo matches2[0][1]
                     echo matches2[0][2]
                     
