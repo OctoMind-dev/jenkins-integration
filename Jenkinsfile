@@ -47,9 +47,9 @@ pipeline {
             }
         }
     }
-    @NonCPS
-    def version(text) {
-      def matcher = text =~ '.*(/|:)(.*)/([^\\.]*)(\\.git)?$'
-      matcher ? matcher : null
-    }
+}
+@NonCPS
+def version(text) {
+  def matcher = text =~ '.*(/|:)(.*)/([^\\.]*)(\\.git)?$'
+  matcher ? matcher : null
 }
