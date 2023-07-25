@@ -35,5 +35,7 @@ After adding your `Repository URL`, you also need to provide credentials if it i
 You also need to specify a branch, in this example `*/*` will trigger the pipeline on pushing to any branch.
 If you want to trigger pipeline only on specific branch changes, e.g. main, you should put `*/main`.
 The last field asks you to set the path and name to Jenkinsfile, but in our repository, it is on top level, and it is name Jenkinsfile.
-Lastly, click on save and your are Done!
+Lastly, click on save
 (image goes here)
+5. You should add you `AUTOMAGICALLY_TOKEN` to your secrets. Navigate to `Dashboard -> Manage jenkins -> Credentials -> System -> Global credentials (unrestricted)` and click on `Add Credentials`.
+For the `Kind` you need to select `Secret text`. Be careful that your `ID` matches the `ID` that you call within the Jenkinsfile script. Put your Token value to Secret field and click `Create`.
