@@ -8,7 +8,8 @@ To trigger automagically from your GitHub repo inside Jenkins, you need to:
 ## Adding webhook
 
 1. Select your repository `Settings`, go to `Webhooks` and click `Add webhook.` 
-![Webhook-01](/docs/Webhook-01.png) <br />
+![Webhook-01](/docs/Webhook-01.png)
+<br />
 2. For Payload URL set `<your-jenkins-url>/github-webhook/` and select `application/json` for Content type.
 Also select triggers that best suite your need. 
 In general, `the push event` is enough, but for this example, we also want to trigger automagically on `Pull Request`.
