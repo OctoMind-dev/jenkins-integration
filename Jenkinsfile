@@ -10,9 +10,8 @@ pipeline {
                     final String baseUrl = "https://preview.octomind.dev"
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
-                    String[] something = "${env.GIT_URL}"
+                    String[] something = "${env.GIT_URL}".split('/')
                     int number_of_elements = something.size()
-                    echo something
                     echo something[number_of_elements - 2]
                     echo something[number_of_elements - 3]
                     
