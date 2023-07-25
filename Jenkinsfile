@@ -10,7 +10,7 @@ pipeline {
                     final String baseUrl = "https://preview.octomind.dev"
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
-                    String[] something = "https://github.com/OctoMind-dev/jenkins-integration".split('/')
+                    String[] something = "${env.GIT_URL}"
                     int number_of_elements = something.size()
                     echo something[number_of_elements - 1]
                     echo something[number_of_elements - 2]
