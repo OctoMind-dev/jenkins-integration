@@ -38,6 +38,7 @@ pipeline {
                             }
                     }"""
                     final def (String response, String code) = sh(script: "curl -s -w '\\n%{response_code}' $url --header '$header' --data '$data'", returnStdout: true).trim().tokenize("\n")
+                    echo response
                     if (code == '202') {
                         def matches = response =~/"id":"(.+?)"/
                         final String testReportId = matches[0][1]
