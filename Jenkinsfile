@@ -27,7 +27,6 @@ pipeline {
 
                     final String data = """{
                         "url": "$testTargetUrl",
-                        "token": "${AUTOMAGICALLY_TOKEN}",
                         "testTargetId": "$testTargetId",
                         "context": { 
                             "source": "github",
