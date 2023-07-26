@@ -1,6 +1,7 @@
 pipeline {
     agent any
     environment {
+        // this is the API key you created before
         AUTOMAGICALLY_TOKEN = credentials('AUTOMAGICALLY_TOKEN')
     }
     stages {
