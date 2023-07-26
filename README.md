@@ -2,8 +2,33 @@
 
 To trigger automagically from your GitHub repo inside Jenkins, you need to:
 
-1. Add a WebHook to your GitHub Repository
-2. Extend your Jenkinsfile with the [script in this repo](Jenkinsfile)
+1. Create API key
+2. Create Test Target
+3. Add a WebHook to your GitHub Repository
+4. Extend your Jenkinsfile with the [script in this repo](Jenkinsfile)
+
+## Creating API key
+
+Click on `Create an API key`.
+
+![create-api-key](/docs/create-api-key.png)
+
+You then will be navigated to our auth provider where you can create a new org-level API key.
+
+![create-api-key-propelauth](/docs/create-api-key-propelauth.png)
+
+![](/docs/create-api-key-copy.png)
+You can only copy the API key once, so make sure to do that now. You should not share it with anyone.
+
+Please add the APIKey to your CI provider as a secret.
+
+## Creating Test Target
+
+You can get your ApiKey from the [octomind landing page](https://app.octomind.dev) once signed-in.
+If you are greeted with the 'Setup your autonomous end-to-end tests' message, please sign-in first
+
+
+![copy-test-target](/docs/copy-test-target.png)
 
 ## Adding webhook
 
