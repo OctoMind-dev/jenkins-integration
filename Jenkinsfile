@@ -9,7 +9,6 @@ pipeline {
                 script {
                     final String baseUrl = "https://preview.octomind.dev" // this should be updated with production url and production test target id, but when?
                     final String url = "${baseUrl}/api/v2/execute"
-                    final String header = "Content-Type: application/json"
                     String[] split_url = "${env.GIT_URL}".split('/')
                     int number_of_elements = split_url.size()
                     final String repo = split_url[number_of_elements - 1]
@@ -20,6 +19,11 @@ pipeline {
                     
                     // your testTargetId that you also get from us
                     final String testTargetId = "2eed7f27-dfef-4062-8594-1b8f49ca0d26"
+
+                    final String header = """{
+                        "Content-Type": "application/json", 
+                        "x-api-key" : "${AUTOMAGICALLY_TOKEN}"
+                    }"""
 
                     final String data = """{
                         "url": "$testTargetUrl",
