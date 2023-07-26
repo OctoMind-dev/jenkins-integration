@@ -7,7 +7,7 @@ pipeline {
         stage("Execute Automagically") {
             steps {
                 script {
-                    final String baseUrl = "https://preview.octomind.dev" // this should be updated with production url and production test target id, but when?
+                    final String baseUrl = "https://app.octomind.dev"
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
                     String[] split_url = "${env.GIT_URL}".split('/')
@@ -16,10 +16,10 @@ pipeline {
                     final String owner = split_url[number_of_elements - 2]
 
                     // publicly accessible url to your deployment
-                    final String testTargetUrl = "https://preview.octomind.dev/testresults/c09d0c97-20f6-452a-aadd-086f627716f8"
+                    final String testTargetUrl = "https://storage.googleapis.com/mocktopus/index.html"
                     
                     // your testTargetId that you also get from us
-                    final String testTargetId = "2eed7f27-dfef-4062-8594-1b8f49ca0d26"
+                    final String testTargetId = "35c8bfca-48d2-4eb2-8042-4ee50707a295"
 
                     final String data = """{
                         "url": "$testTargetUrl",
