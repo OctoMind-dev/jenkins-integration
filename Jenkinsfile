@@ -33,7 +33,7 @@ pipeline {
                             "ref": "${env.GIT_BRANCH}"
                             }
                     }"""
-                    final def (String response, String code) = sh(script: "curl -s -w '\\n%{response_code}' $url --header '$header' --header 'x-api-key: ${AUTOMAGICALLY_TOKEN}' --data '$data'", returnStdout: true).trim().tokenize("\n")
+                    final def (String response, String code) = sh(script: "curl -s -w '\\n%{response_code}' $url --header '$header' --header 'x-api-key: $AUTOMAGICALLY_TOKEN' --data '$data'", returnStdout: true).trim().tokenize("\n")
                     if (code == '202') {
                         def matches = response =~/"id":"(.+?)"/
                         final String testReportId = matches[0][1]
