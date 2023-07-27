@@ -1,45 +1,50 @@
 pipeline {
     agent any
-
+    environment {
+        // this is the API key you created before
+        AUTOMAGICALLY_TOKEN = credentials('AUTOMAGICALLY_TOKEN')
+    }
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
-        stage("Using curl example") {
+        stage("Execute Automagically") {
             steps {
                 script {
-                    final String url = "https://preview.octomind.dev/api/v2/execute"
+                    final String baseUrl = "https://app.octomind.dev"
+                    final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
-                    final String data = '
-                    { 
-                    	"url": "https://preview.octomind.dev/testresults/c09d0c97-20f6-452a-aadd-086f627716f8",
-                        "token": "d791a2d0603f7863951575ca05e1ffcfddaaf17f4d2b5d0998212ea093ae78d13b836d8ece1172719ed73199d89a5ba2",
-                        "testTargetId": "2eed7f27-dfef-4062-8594-1b8f49ca0d26",
-                        "context": {
-                        	"source": "github",
-                            "repo": "automagically",
-                            "owner": "OctoMind-dev",
-                            "sha": "someSha",
-                            "ref": "someRef"
-                        }
+                    String[] split_url = "${env.GIT_URL}".split('/')
+                    int number_of_elements = split_url.size()
+                    final String repo = split_url[number_of_elements - 1]
+                    final String owner = split_url[number_of_elements - 2]
+
+                    // publicly accessible url to your deployment
+                    final String testTargetUrl = "https://storage.googleapis.com/mocktopus/index.html"
+                    
+                    // your testTargetId that you also get from us
+                    final String testTargetId = "35c8bfca-48d2-4eb2-8042-4ee50707a295"
+
+                    final String data = """{
+                        "url": "$testTargetUrl",
+                        "testTargetId": "$testTargetId",
+                        "context": { 
+                            "source": "github",
+                            "repo": "$repo",
+                            "owner": "$owner",
+                            "sha": "${env.GIT_COMMIT}",
+                            "ref": "${env.GIT_BRANCH}"
+                            }
+                    }"""
+                    final def (String response, String code) = sh(script: "curl -s -w '\\n%{response_code}' $url --header '$header' --header 'x-api-key: $AUTOMAGICALLY_TOKEN' --data '$data'", returnStdout: true).trim().tokenize("\n")
+                    if (code == '202') {
+                        def matches = response =~/"id":"(.+?)"/
+                        final String testReportId = matches[0][1]
+                        final String testReportUrl = "${baseUrl}/testreports/${testReportId}"
+    
+                        currentBuild.description = """<a href="${testReportUrl}">Link to Test Report</a>"""
+                        echo "You can view your Test Report here: ${testReportUrl}"
+                    } else {
+                        currentBuild.description = "Execution unsuccessful. Got status ${code}. Response: ${response}"
+                        echo "Execution unsuccessful. Got status ${code}. Response: ${response}"
                     }
-                    '
-
-                    final String response = sh(script: "curl -s $url --header $header --data $data", returnStdout: true).trim()
-
-                    echo response
                 }
             }
         }
