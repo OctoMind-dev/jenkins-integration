@@ -58,7 +58,9 @@ If you're new to Jenkins, this is how you can create a pipeline to test the scri
 
 1. On your Dashboard page, click on `+ New Item`
 ___
-![Jenkins-01](/docs/Jenkins-01.png)
+<p align="center">
+<img src="docs/Jenkins-01.png" alt="Jenkins-01" width="250"/>
+</p>
 
 2. Give your Project a name, select Pipeline and press OK
 ___
@@ -72,12 +74,15 @@ ___
 4. For the `Definition`, you should select `Pipeline script from SCM`.
 For `SCM` you should select `Git`
 After adding your `Repository URL`, you also need to provide credentials if it is Private repository.
+___
+![Jenkins-04](/docs/Jenkins-05.png)
+
 You also need to specify a branch, in this example `*/*` will trigger the pipeline on pushing to any branch.
 If you want to trigger pipeline only on specific branch changes, e.g. main, you should put `*/main`.
 The last field asks you to set the path and name to Jenkinsfile, but in our repository, it is on top level, and it is named Jenkinsfile, so no changes required.
 Lastly, click on save
 ___
-![Jenkins-04](/docs/Jenkins-04.png)
+![Jenkins-04](/docs/Jenkins-05.png)
 
 5. You should add you `AUTOMAGICALLY_TOKEN` to your secrets. Navigate to `Dashboard -> Manage jenkins -> Credentials -> System -> Global credentials (unrestricted)` and click on `Add Credentials`.
 For the `Kind` you need to select `Secret text`. Be careful that your `ID` matches the `ID` that you call within the Jenkinsfile script. Copy your Token value to the `Secret` field and click `Create`.
