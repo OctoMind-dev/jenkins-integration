@@ -8,6 +8,8 @@ To trigger automagically from your GitHub repo inside Jenkins, you need to:
 4. Extend your Jenkinsfile with the [script in this repo](Jenkinsfile)
 
 ## Creating API key
+You can get your API key from the [octomind landing page](https://app.octomind.dev) once signed-in.
+If you are greeted with the 'Setup your autonomous end-to-end tests' message, please sign-in first
 
 Click on `Create an API key`.
 
@@ -20,11 +22,11 @@ You then will be navigated to our auth provider where you can create a new org-l
 ![](/docs/create-api-key-copy.png)
 You can only copy the API key once, so make sure to do that now. You should not share it with anyone.
 
-Please add the APIKey to your CI provider as a secret.
+Please add the API key to your CI provider as a secret.
 
 ## Creating Test Target
 
-You can get your ApiKey from the [octomind landing page](https://app.octomind.dev) once signed-in.
+You can get your test target ID from the [octomind landing page](https://app.octomind.dev) once signed-in.
 If you are greeted with the 'Setup your autonomous end-to-end tests' message, please sign-in first
 
 
