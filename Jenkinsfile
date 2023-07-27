@@ -42,8 +42,8 @@ pipeline {
                         currentBuild.description = """<a href="${testReportUrl}">Link to Test Report</a>"""
                         echo "You can view your Test Report here: ${testReportUrl}"
                     } else {
-                        currentBuild.description = "Execution unsuccessful. Got status ${code}"
-                        echo "Execution unsuccessful. Got status ${code}"
+                        currentBuild.description = "Execution unsuccessful. Got status ${code}. Response: ${response}"
+                        echo "Execution unsuccessful. Got status ${code}. Response: ${response}"
                     }
                 }
             }
