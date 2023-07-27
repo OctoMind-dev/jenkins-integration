@@ -52,7 +52,23 @@ ___
 ___
 ![Webhook-04](/docs/Webhook-04.png)
 
-## Creating Jenkins pipeline
+## Jenkins
+
+You should copy Jenkinsfile [script in this repo](Jenkinsfile) to the desired step in your pipeline.
+
+You should add your `AUTOMAGICALLY_TOKEN` to your secrets. Navigate to `Dashboard -> Manage jenkins -> Credentials -> System -> Global credentials (unrestricted)` and click on `Add Credentials`.
+For the `Kind` you need to select `Secret text`. Be careful that your `ID` matches the `ID` that you call within the Jenkinsfile script. Copy your Token value to the `Secret` field and click `Create`.
+___
+![Jenkins-06](/docs/Jenkins-06.png)
+
+
+If you want, you can enable safe parsing of HTML so you can click the link to the test report the pipeline output for you.
+Navigate to `Dashboard -> Manage jenkins -> Security` and for `Markup Formatter` select `Safe HTML` and then save.
+___
+![Jenkins-07](/docs/Jenkins-07.png)
+
+
+## Creating Jenkins Pipeline
 
 If you're new to Jenkins, this is how you can create a pipeline to test the script
 
@@ -75,22 +91,11 @@ ___
 For `SCM` you should select `Git`
 After adding your `Repository URL`, you also need to provide credentials if it is Private repository.
 ___
-![Jenkins-04](/docs/Jenkins-05.png)
+![Jenkins-04](/docs/Jenkins-04.png)
 
 You also need to specify a branch, in this example `*/*` will trigger the pipeline on pushing to any branch.
 If you want to trigger pipeline only on specific branch changes, e.g. main, you should put `*/main`.
 The last field asks you to set the path and name to Jenkinsfile, but in our repository, it is on top level, and it is named Jenkinsfile, so no changes required.
 Lastly, click on save
 ___
-![Jenkins-04](/docs/Jenkins-05.png)
-
-5. You should add you `AUTOMAGICALLY_TOKEN` to your secrets. Navigate to `Dashboard -> Manage jenkins -> Credentials -> System -> Global credentials (unrestricted)` and click on `Add Credentials`.
-For the `Kind` you need to select `Secret text`. Be careful that your `ID` matches the `ID` that you call within the Jenkinsfile script. Copy your Token value to the `Secret` field and click `Create`.
-___
 ![Jenkins-05](/docs/Jenkins-05.png)
-
-
-If you want, you can enable safe parsing of HTML so you can click the link to the test report the pipeline output for you.
-Navigate to `Dashboard -> Manage jenkins -> Security` and for `Markup Formatter` select `Safe HTML` and then save.
-___
-![Jenkins-06](/docs/Jenkins-06.png)
