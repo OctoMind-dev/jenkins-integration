@@ -16,7 +16,6 @@ pipeline {
                     final String owner = matchesOrgAndRepo[0][2]
                     final String repo = matchesOrgAndRepo[0][3]
 
-                    echo matchesOrgAndRepo
                     echo owner
                     echo repo
 
