@@ -16,9 +16,6 @@ pipeline {
                     final String owner = matchesOrgAndRepo[0][2]
                     final String repo = matchesOrgAndRepo[0][3]
 
-                    echo owner
-                    echo repo
-
                     // publicly accessible url to your deployment
                     final String testTargetUrl = "https://storage.googleapis.com/mocktopus/index.html"
                     
