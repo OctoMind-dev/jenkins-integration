@@ -21,7 +21,7 @@ pipeline {
                     // echo repo
 
                     def matchesOrgAndRepo =  "https://github.com/OctoMind-dev/jenkins-integration.git" =~ ".*(/|:)(.*)/([^\\.]*)(\\.git)?\$"
-                    if (matchesOrgAndRepo) {
+
                         def match = matchesOrgAndRepo[0]
                         def fullMatch = match[0]
                         def protocolSeparator = match[1]
@@ -29,14 +29,12 @@ pipeline {
                         def repository = match[3]
                         def dotGit = match[4]
 
-                        println("Full Match: $fullMatch")
-                        println("Protocol Separator: $protocolSeparator")
-                        println("Organization: $organization")
-                        println("Repository: $repository")
-                        println("Dot Git: $dotGit")
-                    } else {
-                        println("No match found.")
-                    }
+                        echo "Full Match: $fullMatch"
+                        echo "Protocol Separator: $protocolSeparator"
+                        echo "Organization: $organization"
+                        echo "Repository: $repository"
+                        echo "Dot Git: $dotGit"
+
 
 
                     // publicly accessible url to your deployment
