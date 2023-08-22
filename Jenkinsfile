@@ -12,30 +12,13 @@ pipeline {
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
                     
-                    // def matchesOrgAndRepo =  "https://github.com/OctoMind-dev/jenkins-integration.git" =~ '.*(\\/|:)(.*)\\/([^\\.]*)(\\.git)?$'
-                    // final String owner = matchesOrgAndRepo[0][2]
-                    // final String repo = matchesOrgAndRepo[0][3]
-
-                    // echo matchesOrgAndRepo
-                    // echo owner
-                    // echo repo
-
                     def matchesOrgAndRepo =  "https://github.com/OctoMind-dev/jenkins-integration.git" =~ ".*(/|:)(.*)/([^\\.]*)(\\.git)?\$"
+                    final String owner = matchesOrgAndRepo[0][2]
+                    final String repo = matchesOrgAndRepo[0][3]
 
-                        def match = matchesOrgAndRepo[0]
-                        def fullMatch = match[0]
-                        def protocolSeparator = match[1]
-                        def organization = match[2]
-                        def repository = match[3]
-                        def dotGit = match[4]
-
-                        echo "Full Match: $fullMatch"
-                        echo "Protocol Separator: $protocolSeparator"
-                        echo "Organization: $organization"
-                        echo "Repository: $repository"
-                        echo "Dot Git: $dotGit"
-
-
+                    echo matchesOrgAndRepo
+                    echo owner
+                    echo repo
 
                     // publicly accessible url to your deployment
                     final String testTargetUrl = "https://storage.googleapis.com/mocktopus/index.html"
