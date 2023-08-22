@@ -12,13 +12,31 @@ pipeline {
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
                     
-                    def matchesOrgAndRepo =  "https://github.com/OctoMind-dev/jenkins-integration.git" =~ '.*(\\/|:)(.*)\\/([^\\.]*)(\\.git)?$'
-                    final String owner = matchesOrgAndRepo[0][2]
-                    final String repo = matchesOrgAndRepo[0][3]
+                    // def matchesOrgAndRepo =  "https://github.com/OctoMind-dev/jenkins-integration.git" =~ '.*(\\/|:)(.*)\\/([^\\.]*)(\\.git)?$'
+                    // final String owner = matchesOrgAndRepo[0][2]
+                    // final String repo = matchesOrgAndRepo[0][3]
 
-                    echo matchesOrgAndRepo
-                    echo owner
-                    echo repo
+                    // echo matchesOrgAndRepo
+                    // echo owner
+                    // echo repo
+
+                    def matchesOrgAndRepo =  "https://github.com/OctoMind-dev/jenkins-integration.git" =~ ".*(/|:)(.*)/([^\\.]*)(\\.git)?\$"
+                    if (matchesOrgAndRepo) {
+                        def match = matchesOrgAndRepo[0]
+                        def fullMatch = match[0]
+                        def protocolSeparator = match[1]
+                        def organization = match[2]
+                        def repository = match[3]
+                        def dotGit = match[4]
+
+                        println("Full Match: $fullMatch")
+                        println("Protocol Separator: $protocolSeparator")
+                        println("Organization: $organization")
+                        println("Repository: $repository")
+                        println("Dot Git: $dotGit")
+                    } else {
+                        println("No match found.")
+                    }
 
 
                     // publicly accessible url to your deployment
