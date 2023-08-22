@@ -11,10 +11,15 @@ pipeline {
                     final String baseUrl = "https://app.octomind.dev"
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
-                    String[] split_url = "${env.GIT_URL}".split('/')
-                    int number_of_elements = split_url.size()
-                    final String repo = split_url[number_of_elements - 1]
-                    final String owner = split_url[number_of_elements - 2]
+                    
+                    def matchesOrgAndRepo "https://github.com/OctoMind-dev/jenkins-integration.git" =~".*(\/|:)(.*)\/([^\.]*)(\.git)?$"
+                    final String owner = matchesOrgAndRepo[0][2]
+                    final String repo = matchesOrgAndRepo[0][3]
+
+                    echo matchesOrgAndRepo
+                    echo owner
+                    echo repo
+
 
                     // publicly accessible url to your deployment
                     final String testTargetUrl = "https://storage.googleapis.com/mocktopus/index.html"
