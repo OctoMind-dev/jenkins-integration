@@ -12,7 +12,7 @@ pipeline {
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
                     
-                    def matchesOrgAndRepo =  "https://github.com/OctoMind-dev/jenkins-integration.git" =~ ".*(\\/|:)(.*)\\/([^\\.]*)(\\.git)?\\$"
+                    def matchesOrgAndRepo =  "https://github.com/OctoMind-dev/jenkins-integration.git" =~ '.*(\\/|:)(.*)\\/([^\\.]*)(\\.git)?$'
                     final String owner = matchesOrgAndRepo[0][2]
                     final String repo = matchesOrgAndRepo[0][3]
 
