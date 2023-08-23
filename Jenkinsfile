@@ -11,8 +11,6 @@ pipeline {
                     final String baseUrl = "https://app.octomind.dev"
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
-
-                    echo "${env.GIT_URL}"
                     
                     def matchesOrgAndRepo =  ("${env.GIT_URL}" =~ ".*(/|:)(.*)/([^\\.]*)(\\.*?)/(.*)")
                                                                   
