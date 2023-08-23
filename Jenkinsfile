@@ -14,7 +14,8 @@ pipeline {
 
                     echo "${env.GIT_URL}"
                     
-                    def matchesOrgAndRepo =  ("${env.GIT_URL}" =~ ".*(/|:)(.*)/([^\\.]*)(.*?)\/(.*)")
+                    def matchesOrgAndRepo =  ("${env.GIT_URL}" =~ ".*(/|:)(.*)/([^\\.]*)(\\.*?)/(.*)")
+                                                                  
                     final String owner = matchesOrgAndRepo[0][2]
                     final String repo = matchesOrgAndRepo[0][3]
 
