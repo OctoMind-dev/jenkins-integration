@@ -12,7 +12,7 @@ pipeline {
                     final String url = "${baseUrl}/api/v2/execute"
                     final String header = "Content-Type: application/json"
                     
-                    def matchesOrgAndRepo =  ("${env.GIT_URL}" =~ ".*(/|:)(.*)/([^\\.]*)(\\.*?)/(.*)")
+                    def matchesOrgAndRepo =  ("${env.GIT_URL}".replaceAll("/\$", "") =~ ".*(/|:)(.*)/([^.]*)(.git)?\$")
                                                                   
                     final String owner = matchesOrgAndRepo[0][2]
                     final String repo = matchesOrgAndRepo[0][3]
