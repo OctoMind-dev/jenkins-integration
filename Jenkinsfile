@@ -13,7 +13,8 @@ pipeline {
                     final String header = "Content-Type: application/json"
                     
                     // def matchesOrgAndRepo =  ("${env.GIT_URL}" =~ ".*(/|:)(.*)/([^\\.]*)(\\.*?)/(.*)")
-                    def matchesOrgAndRepo =  ("git@github.com:jive/itsg-gotoresolve-asset-management-frontend.git".replaceAll("/\$", "") =~ ".*(/|:)(.*)/([^.]*)(.git)?$")
+                    final String techbro = StringUtils.removeEnd("git@github.com:jive/itsg-gotoresolve-asset-management-frontend.git", "/")
+                    def matchesOrgAndRepo =  (techbro =~ ".*(/|:)(.*)/([^.]*)(.git)?$")
                                                                   
                     final String owner = matchesOrgAndRepo[0][2]
                     final String repo = matchesOrgAndRepo[0][3]
